@@ -9,7 +9,7 @@ const steps = {
 };
 
 const Register = () => {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(2);
     const Step = steps[step];
 
     function onNext() {
