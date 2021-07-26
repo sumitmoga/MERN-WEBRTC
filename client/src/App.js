@@ -7,7 +7,7 @@ import Authenticate from './pages/Authenticate/Authenticate';
 import Activate from './pages/Activate/Activate';
 import Rooms from './pages/Rooms/Rooms';
 
-const isAuth = true
+const isAuth = false
 const user = {
   activated: true
 }
