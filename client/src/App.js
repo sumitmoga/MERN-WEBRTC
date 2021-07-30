@@ -9,6 +9,7 @@ import Rooms from './pages/Rooms/Rooms';
 import { useSelector } from 'react-redux';
 
 function App() {
+  console.log(process.env.REACT_APP_API_URL)
   return (
     <BrowserRouter>
       <Navigation />
