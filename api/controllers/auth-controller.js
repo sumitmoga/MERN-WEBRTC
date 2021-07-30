@@ -16,7 +16,7 @@ class AuthController {
             const expires = Date.now() + ttl;
             const data = `${phone}.${otp}.${expires}`;
             const hash = hashService.hashOtp(data);
-            // await otpService.sendBySms(phone, otp);
+            await otpService.sendBySms(phone, otp);
             res.json({
                 hash: `${hash}.${expires}`,
                 phone,
@@ -25,6 +25,22 @@ class AuthController {
         } catch (err) {
             console.log(err);
             res.status(500).json({ message: 'message sending failed' });
+        }
+    }
+    async sendOtp(req, res) {
+        const { hash, otp, phone } = req.body;
+        if (!hash || !otp || !phone) {
+            res.status(400).json({ message: 'All fields required' })
+        }
+
+        const [hashOtp, expires] = hash.split('.')
+        if (Date.now() > +expires) {
+            res.status(400).json({ message: 'OTP expired' })
+        }
+        const data = `${phone}.${otp}.${expires}`;
+        const isValid = await otpService.verifyOtp(hashOtp, data);
+        if (!isValid) {
+            res.status(400).json({ message: 'OTP Invalid' })
         }
     }
 }

@@ -10,7 +10,7 @@ const corsOption = {
     origin: ['http://localhost:3000'],
 };
 app.use(cors(corsOption));
-const PORT = process.env.PORTn || 8080;
+const PORT = process.env.PORT || 8080;
 
 DbConnect();
 app.use(express.json());
