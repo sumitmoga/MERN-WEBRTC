@@ -1,4 +1,7 @@
-const crypto = require('crypto')
+
+const {
+    randomInt,
+} = require('crypto');
 const hashService = require('./hash-service')
 
 var accountSid = process.env.TWILIO_ACCOUNT_SID; // Your Account SID from www.twilio.com/console
@@ -10,8 +13,8 @@ const twilioClient = require('twilio')(accountSid, authToken, {
 class OtpService {
 
     generateOtp() {
-        const otp = crypto.randomInt(1000, 9999)
-        return otp
+        const otp = randomInt(1000, 9999);
+        return otp;
     }
 
     async sendBySms(to, otp) {
